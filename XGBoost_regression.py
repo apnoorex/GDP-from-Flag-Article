@@ -45,7 +45,7 @@ y = countries['GDPPerCapita']
 # Split the dataset into testing and training portions
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=71)
 
-# Classification model
+# Regression model
 reg = GradientBoostingRegressor(n_estimators=120, max_depth=3)
 
 # Fit the model with the training data
@@ -59,5 +59,5 @@ df['Preds'] = predictions
 print(df.head(100))
 
 # Accuracy of the model
-mae = np.absolute(np.subtract(df['GDPPerCapita'].to_numpy(), df['Preds'].to_numpy())).mean()
+mae = np.absolute(np.subtract(df['GDPPerCapita'], df['Preds'])).mean()
 print(mae)
